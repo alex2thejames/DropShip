@@ -1,0 +1,88 @@
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.csprojAssemblyReference.cache
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.csproj.CoreCompileInputs.cache
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.RazorAssemblyInfo.cache
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.RazorAssemblyInfo.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.AssemblyInfoInputs.cache
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.AssemblyInfo.cs
+/Users/Alexander/Documents/DropShip/bin/Debug/netcoreapp2.2/DropShip.deps.json
+/Users/Alexander/Documents/DropShip/bin/Debug/netcoreapp2.2/DropShip.runtimeconfig.json
+/Users/Alexander/Documents/DropShip/bin/Debug/netcoreapp2.2/DropShip.runtimeconfig.dev.json
+/Users/Alexander/Documents/DropShip/bin/Debug/netcoreapp2.2/DropShip.dll
+/Users/Alexander/Documents/DropShip/bin/Debug/netcoreapp2.2/DropShip.pdb
+/Users/Alexander/Documents/DropShip/bin/Debug/netcoreapp2.2/DropShip.Views.dll
+/Users/Alexander/Documents/DropShip/bin/Debug/netcoreapp2.2/DropShip.Views.pdb
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.TagHelpers.input.cache
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.TagHelpers.output.cache
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.RazorCoreGenerate.cache
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.RazorTargetAssemblyInfo.cache
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.RazorTargetAssemblyInfo.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.Views.pdb
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.dll
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.pdb
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.csproj.CopyComplete
+/Users/Alexander/Documents/DropShip/bin/Debug/netcoreapp2.2/appsettings.Development.json
+/Users/Alexander/Documents/DropShip/bin/Debug/netcoreapp2.2/appsettings.json
+/Users/Alexander/Documents/DropShip/bin/Debug/netcoreapp2.2/Properties/launchSettings.json
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Home/frontPage.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Home/passwordUpdate.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Home/productDisplay.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Home/registerPage.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Home/settingsPage.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/DropShip.genruntimeconfig.cache
+/Users/Alexander/Documents/DropShip firstat Square/bin/Debug/netcoreapp2.2/appsettings.Development.json
+/Users/Alexander/Documents/DropShip firstat Square/bin/Debug/netcoreapp2.2/appsettings.json
+/Users/Alexander/Documents/DropShip firstat Square/bin/Debug/netcoreapp2.2/Properties/launchSettings.json
+/Users/Alexander/Documents/DropShip firstat Square/bin/Debug/netcoreapp2.2/DropShip.deps.json
+/Users/Alexander/Documents/DropShip firstat Square/bin/Debug/netcoreapp2.2/DropShip.runtimeconfig.json
+/Users/Alexander/Documents/DropShip firstat Square/bin/Debug/netcoreapp2.2/DropShip.runtimeconfig.dev.json
+/Users/Alexander/Documents/DropShip firstat Square/bin/Debug/netcoreapp2.2/DropShip.dll
+/Users/Alexander/Documents/DropShip firstat Square/bin/Debug/netcoreapp2.2/DropShip.pdb
+/Users/Alexander/Documents/DropShip firstat Square/bin/Debug/netcoreapp2.2/DropShip.Views.dll
+/Users/Alexander/Documents/DropShip firstat Square/bin/Debug/netcoreapp2.2/DropShip.Views.pdb
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.csprojAssemblyReference.cache
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.csproj.CoreCompileInputs.cache
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.RazorAssemblyInfo.cache
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.RazorAssemblyInfo.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.AssemblyInfoInputs.cache
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.AssemblyInfo.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.TagHelpers.input.cache
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.TagHelpers.output.cache
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.RazorCoreGenerate.cache
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Views/Home/frontPage.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Views/Home/passwordUpdate.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Views/Home/productDisplay.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Views/Home/registerPage.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Views/Home/settingsPage.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.RazorTargetAssemblyInfo.cache
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.RazorTargetAssemblyInfo.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.Views.pdb
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.dll
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.pdb
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.genruntimeconfig.cache
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/DropShip.csproj.CopyComplete
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Pages/Checkout.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Pages/Error.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Pages/_Layout.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Pages/_ValidationScriptsPartial.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Pages/_ViewImports.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Pages/_ViewStart.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Pages/CheckoutProcess.cshtml.g.cs
+/Users/Alexander/Documents/DropShip firstat Square/obj/Debug/netcoreapp2.2/Razor/Views/Home/cart.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Pages/Checkout.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Pages/CheckoutProcess.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Pages/Error.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Pages/_Layout.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Pages/_ValidationScriptsPartial.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Pages/_ViewImports.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Pages/_ViewStart.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Home/cartDisplay.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Home/UnfilledOrderDisplay.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Home/orderSearch.cshtml.g.cs

@@ -1,0 +1,91 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/Alexander/Documents/DropShip/DropShip.csproj": {}
+  },
+  "projects": {
+    "/Users/Alexander/Documents/DropShip/DropShip.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/Alexander/Documents/DropShip/DropShip.csproj",
+        "projectName": "DropShip",
+        "projectPath": "/Users/Alexander/Documents/DropShip/DropShip.csproj",
+        "packagesPath": "/Users/Alexander/.nuget/packages/",
+        "outputPath": "/Users/Alexander/Documents/DropShip/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/Alexander/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.16, )"
+            },
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[0.66.0, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Square": {
+              "target": "Package",
+              "version": "[5.2.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.300/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

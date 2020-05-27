@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .productPic {
+            max-width: 700px;
+            position: relative;
+            margin: auto;
+            z-index: 5;
+        }
+        .divider {
+            width: 90%;
+            margin: auto;
+            border: 0.5px solid rgba(75,149,200,0.5);
+        }
+    </style>
+</head>
+<body>
+    @* for each product in DB *@
+    @foreach(var i in ViewBag.AllProducts)
+    {
+            <div class="productPic">
+        <a href="/product/@i.ProductName">
+                    <img src="~/media/@i.ProductName/0.jpg" style="width:100%">
+        </a>
+            </div>
+        <div class="divider"></div>
+    }
+    @* end *@
+</body>
+</html>

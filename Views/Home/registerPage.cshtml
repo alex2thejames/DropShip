@@ -1,0 +1,220 @@
+@using DropShip.Models
+@model User
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>  
+        #logreg-forms{
+        @* margin: 0 !important; *@
+        position: absolute !important;
+        top: 40% !important;
+        left: 50% !important;
+        -ms-transform: translate(-50%, -50%) !important;
+        transform: translate(-50%, -50%) !important;
+        width:60%;
+        margin:10px;
+        background: hsla(0, 0%, 100%, 0.9);
+        border: 1px solid rgba(57, 59, 61, .2);
+        border-radius: 8px;
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        }
+        #logreg-forms form {
+            width: 100%;
+            padding: 15px;
+            margin: auto;
+        }
+        #logreg-forms .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+            background: hsla(0, 0%, 100%, 0.9);
+            color: #606162;
+            padding: 6px 5px;
+            margin: 15px 5px 10px 5px;
+            border: 1px solid rgba(57, 59, 61, .2);
+            border-radius: 8px;
+            text-indent: 5px;
+            display: inline-block;
+        }
+        #logreg-forms .form-control:focus { 
+            background: hsla(0, 0%, 100%, 0.9);
+            border-color: rgba(0, 0, 0, 0.3);
+            outline: none;
+            box-shadow: 0 0 0 1px #e8c291 inset;
+        }
+        .inputStyle1 {
+            width: 48%;
+        }
+        .inputStyle2 {
+            width: 65%;
+        }
+        .inputStyle3 {
+            width: 31%;
+        }
+        .inputStyle4 {
+            width: 98.5%;
+        }
+        .inputStyle5 {
+            width: 31.25%;
+        }
+        #logreg-forms .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        #logreg-forms .form-signin input[type="password"] {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        #logreg-forms .social-login{
+            @* width:30px; *@
+            @* margin:0 auto; *@
+            margin-bottom: 14px;
+            margin-left: 25%;
+        }
+        #logreg-forms .social-btn{
+            width:190px;
+            font-weight: 100;
+            color:white;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        #logreg-forms a{
+            display: block;
+            padding-top:10px;
+            color:lightseagreen;
+        }
+
+        #logreg-form .lines{
+            width:200px;
+            border:1px solid red;
+        }
+
+
+        #logreg-forms button[type="submit"]{ 
+            height: 37px;
+            width: 98.5%;
+            margin-top: 10px;
+            margin-left: 5px;
+            background-color: transparent;
+            border-radius: 8px;
+            color: #393b3d;
+            padding: 0;
+            font: 15px Arial, Helvetica;
+            cursor: auto;
+            font-weight: 300;
+            border: 1px solid gray;
+            }
+
+        #logreg-forms .facebook-btn{  background-color:#3C589C; }
+
+        #logreg-forms .google-btn{ background-color: #DF4B3B; }
+
+        #logreg-forms .form-reset, #logreg-forms .form-signup{ display: none; }
+
+        #logreg-forms .form-signup .social-btn{ width:210px; }
+
+        #logreg-forms .form-signup input { margin-bottom: 2px;}
+
+        .form-signup .social-login{
+            width:210px !important;
+            margin: 0 auto;
+        }
+
+        .a312 {
+            color: purple;
+            font-size: 40px;
+            font-family: courier;
+        }
+        span {
+            color: red;
+        }
+
+        /* Mobile */
+
+        @@media screen and (max-width:500px){
+            #logreg-forms{
+                width:300px;
+            }
+            
+            #logreg-forms  .social-login{
+                width:200px;
+                margin:0 auto;
+                margin-bottom: 10px;
+                margin-left: 25%;
+            }
+            #logreg-forms  .social-btn{
+                font-size: 1.3rem;
+                font-weight: 100;
+                color:white;
+                width:200px;
+                height: 56px;
+                
+            }
+            #logreg-forms .social-btn:nth-child(1){
+                margin-bottom: 5px;
+            }
+            #logreg-forms .social-btn span{
+                display: none;
+            }
+            #logreg-forms  .facebook-btn:after{
+                content:'Facebook';
+            }
+        
+            #logreg-forms  .google-btn:after{
+                content:'Google+';
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="logreg-forms">
+            <form asp-action="RegisterProcess" asp-controller="Home" method="post">
+                <div class="social-login">
+                    <button class="btn facebook-btn social-btn" type="button"><span1><i class="fab fa-facebook-f"></i> Sign up with Facebook</span1> </button>
+                    <button class="btn google-btn social-btn" type="button"><span1><i class="fab fa-google-plus-g"></i> Sign up with Google+</span1> </button>
+                </div>
+
+                <span asp-validation-for="FirstName"></span>
+                <input type="text" class="form-control inputStyle1" placeholder="First name*" name="FirstName" required="" autofocus="">
+
+                <span asp-validation-for="LastName"></span>
+                <input type="text" class="form-control inputStyle1" placeholder="Last name*" name="LastName" required="" autofocus="">
+
+                <span asp-validation-for="Email"></span>
+                <input type="email" class="form-control inputStyle2" placeholder="Email address*" name="email" required autofocus="">
+
+                <span asp-validation-for="MobilePhone"></span>
+                <input type="tel" class="form-control inputStyle3" placeholder="Mobile Phone" name="MobilePhone" autofocus="">
+
+                <span asp-validation-for="Street"></span>
+                <input type="text" class="form-control inputStyle4" placeholder="Street" name="Street" autofocus="">
+
+                <span asp-validation-for="Postal"></span>
+                <input type="text" class="form-control inputStyle5" placeholder="Zip Code" name="Postal" autofocus="">
+
+                <span asp-validation-for="City"></span>
+                <input type="text" class="form-control inputStyle5" placeholder="City" name="City" autofocus="">
+
+                <span asp-validation-for="State"></span>
+                <input type="text" class="form-control inputStyle5" placeholder="State" name="State" minlength="2" maxlength="2" autofocus="">
+
+                <span asp-validation-for="Password"></span>
+                <input type="password" class="form-control inputStyle1" placeholder="Password*" name="Password" required autofocus="">
+
+                <span asp-validation-for="Confirm"></span>
+                <input type="password" class="form-control inputStyle1" placeholder="Repeat Password*" name="Confirm" required autofocus="">
+
+                <button type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+                <a href="/" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
+            </form>
+    </div>
+</body>
+</html>

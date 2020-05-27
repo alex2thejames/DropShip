@@ -1,0 +1,32 @@
+﻿<Properties StartupConfiguration="{8C90FE1E-7C9D-4BE2-AFE5-24F83A4917CB}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Home/frontPage.cshtml">
+    <Files>
+      <File FileName="Views/Home/frontPage.cshtml" Line="14" Column="11" />
+      <File FileName="Views/Home/passwordUpdate.cshtml" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="DropShip" expanded="True">
+            <Node name="DropShip" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True">
+                  <Node name="frontPage.cshtml" selected="True" />
+                </Node>
+              </Node>
+              <Node name="wwwroot" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.DropShip PreferredExecutionTarget="/Applications/Safari.app" />
+</Properties>
