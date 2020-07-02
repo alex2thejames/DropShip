@@ -61,6 +61,10 @@
             background: rgb(37,98,179);
             vertical-align: top !important;
         }
+        .btn-info2 {
+            height: 35px !important;
+            margin-top: 5px;
+        }
         .noShowInputs {
             border: 0px;
             padding: 4px;
@@ -179,7 +183,7 @@
                         <h5>Password</h5>
                     </td>
                     <td>
-                        <a href="/settings/changepassword"><button class="btn btn-info" type="button">&nbsp; Change Password &nbsp; &nbsp;</button></a>
+                        <a href="/settings/changepassword"><button class="btn btn-info btn-info2" type="button">&nbsp; Change Password &nbsp; &nbsp;</button></a>
                     </td>
                 </tr>
                 <tr>
@@ -198,8 +202,8 @@
                     <button class="btn btn-purple btn-block" type="button">Edit</button>
                 </td>
             </tr>
-                <td colspan="2">
-                    <button id="delActButton" class="btn btn-danger btn-block" onclick="delAct()">Delete Account</button>
+                <td colspan="2"  id="delActButtonRow">
+                    <button class="btn btn-danger btn-block" onclick="delAct()">Delete Account</button>
                     @* </a> *@
                 </td>
             <tr>
@@ -372,7 +376,7 @@
             $('.textInput1').prop('disabled', false);
             $('.textInput1').removeClass('noShowInputs');
             $('.hiddenRow').show();
-            $('#delActButton').hide();
+            $('#delActButtonRow').hide();
             $(this).hide();
         });
         $('#cancelButtonRow').click(function(){
@@ -389,7 +393,7 @@
             $('.textInput1').addClass('noShowInputs');
             $('.hiddenRow').hide();
             $('#editButtonRow').show();
-            $('#delActButton').show();
+            $('#delActButtonRow').show();
             $(this).hide();
         });
         $('#openProductMenu').click(function(){

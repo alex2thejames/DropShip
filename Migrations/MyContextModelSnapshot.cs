@@ -56,11 +56,13 @@ namespace DropShip.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<int>("OrderNumber");
+                    b.Property<string>("OrderNumber")
+                        .IsRequired();
 
-                    b.Property<int>("ProductId");
+                    b.Property<string>("ProductBoughtList")
+                        .IsRequired();
 
-                    b.Property<int>("Quantity");
+                    b.Property<int?>("ProductId");
 
                     b.Property<string>("ShippingMethod")
                         .IsRequired();
@@ -160,8 +162,7 @@ namespace DropShip.Migrations
                 {
                     b.HasOne("DropShip.Models.Product", "P")
                         .WithMany("Orders")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProductId");
 
                     b.HasOne("DropShip.Models.User", "U")
                         .WithMany("Orders")

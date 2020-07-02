@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DropShip.Models;
@@ -20,6 +21,7 @@ using Square.Models;
 using Square.Apis;
 using Square.Exceptions;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace DropShip.Controllers
 {
@@ -31,15 +33,41 @@ namespace DropShip.Controllers
         {
             dbContext = context;
         }
+        public class TempUserCart
+        {
+            public int ProductId {get;set;}
+            public string ProductName {get;set;}
+            public int Quantity {get;set;}
+            public int ProductPrice {get;set;}
+        }
 
         [HttpGet("")]
         public IActionResult frontPage()
         {
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             if(CurrUser != null){
-            ViewBag.CurrUser = CurrUser;
+                ViewBag.CurrUser = CurrUser;
+                int CartNumber = 0;
+                foreach(var i in CurrUser.Carts)
+                {
+                    CartNumber += i.Quantity;
+                }
+                ViewBag.CartNumber = CartNumber;
+            }
+            else{
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                }
+                ViewBag.CartNumber = CartNumber;
             }
             ViewBag.AllProducts = dbContext.Products.ToList();
             return View();
@@ -50,9 +78,22 @@ namespace DropShip.Controllers
         {
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             if(CurrUser != null){
                 return Redirect("/");
+            }
+            else{
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                }
+                ViewBag.CartNumber = CartNumber;
             }
             return View();
         }
@@ -66,9 +107,28 @@ namespace DropShip.Controllers
             }
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             if(CurrUser != null){
                 ViewBag.CurrUser = CurrUser;
+                int CartNumber = 0;
+                foreach(var i in CurrUser.Carts)
+                {
+                    CartNumber += i.Quantity;
+                }
+                ViewBag.CartNumber = CartNumber;
+            }
+            else{
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                }
+                ViewBag.CartNumber = CartNumber;
             }
             Product CurrProduct = dbContext.Products
             .FirstOrDefault(prod => prod.ProductName == productQuery);
@@ -81,10 +141,32 @@ namespace DropShip.Controllers
         {   
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             if(HttpContext.Session.GetInt32("logID") == null)
             {
                 return Redirect("/");
+            }
+            if(CurrUser != null){
+                ViewBag.CurrUser = CurrUser;
+                int CartNumber = 0;
+                foreach(var i in CurrUser.Carts)
+                {
+                    CartNumber += i.Quantity;
+                }
+                ViewBag.CartNumber = CartNumber;
+            }
+            else{
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                }
+                ViewBag.CartNumber = CartNumber;
             }
             ViewBag.CurrUser = CurrUser;
             ViewBag.AllUsers = dbContext.Users.ToList();
@@ -96,10 +178,32 @@ namespace DropShip.Controllers
         {
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             if(HttpContext.Session.GetInt32("logID") == null)
             {
                 return Redirect("/");
+            }
+            if(CurrUser != null){
+                ViewBag.CurrUser = CurrUser;
+                int CartNumber = 0;
+                foreach(var i in CurrUser.Carts)
+                {
+                    CartNumber += i.Quantity;
+                }
+                ViewBag.CartNumber = CartNumber;
+            }
+            else{
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                }
+                ViewBag.CartNumber = CartNumber;
             }
             ViewBag.CurrUser = CurrUser;
             return View();
@@ -113,11 +217,42 @@ namespace DropShip.Controllers
             .Include(user => user.Carts)
             .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
-            ViewBag.CurrUser = CurrUser;
-            if(CurrUser == null){
-                return Redirect("/");
+            if(CurrUser != null){
+                ViewBag.CurrUser = CurrUser;
+                int CartNumber = 0;
+                foreach(var i in CurrUser.Carts)
+                {
+                    CartNumber += i.Quantity;
+                }
+                ViewBag.CartNumber = CartNumber;
+                return View("cartDisplay");
             }
-            return View("cartDisplay");
+            else{
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                    List<TempUserCart> TempUserCarts = new List<TempUserCart>();
+                    foreach(var k in cart1){
+                        TempUserCarts.Add(new TempUserCart() {
+                            ProductId = k[0],
+                            ProductName = dbContext.Products.FirstOrDefault(p => p.ProductId == k[0]).ProductName,
+                            Quantity = k[1],
+                            ProductPrice = dbContext.Products.FirstOrDefault(p => p.ProductId == k[0]).ProductPrice,
+                        });
+                    }
+                    ViewBag.CartNumber = CartNumber;
+                    ViewBag.TempUserCart = TempUserCarts;
+                    return View("cartDisplay");
+                }
+                else{
+                    ViewBag.CartNumber = 0;
+                    return View("cartDisplay");
+                }
+            }
         }
 
         [HttpGet("/UnfilledOrders")]
@@ -133,13 +268,35 @@ namespace DropShip.Controllers
             {
                 return Redirect("/");
             }
+            if(CurrUser != null){
+                ViewBag.CurrUser = CurrUser;
+                int CartNumber = 0;
+                foreach(var i in CurrUser.Carts)
+                {
+                    CartNumber += i.Quantity;
+                }
+                ViewBag.CartNumber = CartNumber;
+            }
+            else{
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                }
+                ViewBag.CartNumber = CartNumber;
+            }
             // ViewBag.UnfilledOrders = dbContext.Orders.Where(o => o.Filled == false)
             // .Include(orders => orders.U)
             // // .ThenInclude(carts => carts.P)
             // .ToList();
             // ViewBag.UnfilledOrders
             List<DropShip.Models.Order> OrderList = new List<DropShip.Models.Order>(); 
-            List<DropShip.Models.Order> OrderListTemp = dbContext.Orders.Where(o => o.Filled == false).ToList();
+            List<DropShip.Models.Order> OrderListTemp = dbContext.Orders.Where(o => o.Filled == false)
+            .Include(o => o.U)
+            .ToList();
             foreach(var i in OrderListTemp)
             {
                 bool tempContains = false;
@@ -160,6 +317,51 @@ namespace DropShip.Controllers
             return View("unfilledOrderDisplay");
         }
 
+        [HttpGet("/order/{orderNumber}")]
+        public IActionResult orderDisplay(string orderNumber)
+        {
+            int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
+            User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
+            .FirstOrDefault(user => user.UserId == id);
+            if(HttpContext.Session.GetInt32("logID") == null)
+            {
+                return Redirect("/");
+            }
+            if(CurrUser != null){
+                ViewBag.CurrUser = CurrUser;
+                int CartNumber = 0;
+                foreach(var i in CurrUser.Carts)
+                {
+                    CartNumber += i.Quantity;
+                }
+                ViewBag.CartNumber = CartNumber;
+            }
+            else{
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                }
+                ViewBag.CartNumber = CartNumber;
+            }
+            if(CurrUser.Admin == false)
+            {
+                return Redirect("/");
+            }
+            else
+            {
+                ViewBag.CurrOrder = dbContext.Orders
+                .Include(order => order.U)
+                .FirstOrDefault(order => order.OrderNumber == orderNumber);
+                return View();
+            }
+        }
+
         
         // ███████ ██    ██ ███    ██  ██████ ████████ ██  ██████  ███    ██ ███████ 
         // ██      ██    ██ ████   ██ ██         ██    ██ ██    ██ ████   ██ ██      
@@ -175,6 +377,15 @@ namespace DropShip.Controllers
                 var userInDb = dbContext.Users.FirstOrDefault(u => u.Email == logUser.Email);
                 if(userInDb == null)
                 {
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                }
+                ViewBag.CartNumber = CartNumber;
                 ModelState.AddModelError("Email", "Invalid Email/Password");
                 ViewBag.AllProducts = dbContext.Products.ToList();
                 return View("frontPage");
@@ -185,6 +396,15 @@ namespace DropShip.Controllers
 
                 if(result == 0)
                 {
+                    int CartNumber = 0;
+                    if(HttpContext.Session.GetString("TempCart") != null){
+                        var cartStr = HttpContext.Session.GetString("TempCart");
+                        List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                        foreach(var j in cart1){
+                            CartNumber += j[1];
+                        }
+                    }
+                    ViewBag.CartNumber = CartNumber;
                     ModelState.AddModelError("Email", "Invalid Email/Password");
                     ViewBag.AllProducts = dbContext.Products.ToList();
                     return View("frontPage");
@@ -198,7 +418,15 @@ namespace DropShip.Controllers
             }
             else
             {   
-                ViewBag.AllProducts = dbContext.Products.ToList();
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                }
+                ViewBag.CartNumber = CartNumber;
                 return View("frontPage");
             }
         }
@@ -216,6 +444,15 @@ namespace DropShip.Controllers
             {   
                 if(dbContext.Users.FirstOrDefault(u => u.Email == newUser.Email) != null)
                 {
+                    int CartNumber = 0;
+                    if(HttpContext.Session.GetString("TempCart") != null){
+                        var cartStr = HttpContext.Session.GetString("TempCart");
+                        List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                        foreach(var j in cart1){
+                            CartNumber += j[1];
+                        }
+                    }
+                    ViewBag.CartNumber = CartNumber;
                     ModelState.AddModelError("Email", "Email already in use!");
                     return View("registerPage");
                 }
@@ -234,6 +471,15 @@ namespace DropShip.Controllers
                 
                     else
                     {
+                        int CartNumber = 0;
+                        if(HttpContext.Session.GetString("TempCart") != null){
+                            var cartStr = HttpContext.Session.GetString("TempCart");
+                            List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                            foreach(var j in cart1){
+                                CartNumber += j[1];
+                            }
+                        }
+                        ViewBag.CartNumber = CartNumber;
                         ModelState.AddModelError("Password", "Password Must Contain an Symbol, Number, and One Alphabetical Character");
                         return View("registerPage");
                     }
@@ -241,6 +487,15 @@ namespace DropShip.Controllers
             }
             else
             {
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                }
+                ViewBag.CartNumber = CartNumber;
                 return View("registerPage");
             }
         }
@@ -280,11 +535,33 @@ namespace DropShip.Controllers
         {
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             ViewBag.CurrUser = CurrUser;
             if(HttpContext.Session.GetInt32("logID") == null)
             {
                 return Redirect("/");
+            }
+            if(CurrUser != null){
+                ViewBag.CurrUser = CurrUser;
+                int CartNumber = 0;
+                foreach(var i in CurrUser.Carts)
+                {
+                    CartNumber += i.Quantity;
+                }
+                ViewBag.CartNumber = CartNumber;
+            }
+            else{
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                }
+                ViewBag.CartNumber = CartNumber;
             }
             if(ModelState.IsValid)
             {   
@@ -320,11 +597,33 @@ namespace DropShip.Controllers
         {
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             ViewBag.CurrUser = CurrUser;
             if(HttpContext.Session.GetInt32("logID") == null)
             {
                 return Redirect("/");
+            }
+            if(CurrUser != null){
+                ViewBag.CurrUser = CurrUser;
+                int CartNumber = 0;
+                foreach(var i in CurrUser.Carts)
+                {
+                    CartNumber += i.Quantity;
+                }
+                ViewBag.CartNumber = CartNumber;
+            }
+            else{
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                }
+                ViewBag.CartNumber = CartNumber;
             }
             if(ModelState.IsValid)
             {   
@@ -359,7 +658,7 @@ namespace DropShip.Controllers
 
 
 
-                                ////password has been updated
+                                ////password has been updated display
                             }
                             else
                             {
@@ -385,6 +684,8 @@ namespace DropShip.Controllers
         {
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             if(HttpContext.Session.GetInt32("logID") == null)
             {
@@ -432,6 +733,8 @@ namespace DropShip.Controllers
         {
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             if(CurrUser.Admin == true)
             {
@@ -467,6 +770,8 @@ namespace DropShip.Controllers
         {
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             if(HttpContext.Session.GetInt32("logID") == null)
             {
@@ -489,6 +794,8 @@ namespace DropShip.Controllers
         {
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             ViewBag.CurrUser = CurrUser;
             if(HttpContext.Session.GetInt32("logID") == null)
@@ -532,31 +839,39 @@ namespace DropShip.Controllers
         {
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             if(ModelState.IsValid)
             {   
                 if(CurrUser == null)
                 {
-                    System.Console.WriteLine("@@@@@@@@");
-                    System.Console.WriteLine("@@@@@@@@");
-                    System.Console.WriteLine("@@@@@@@@");
-                    System.Console.WriteLine("@@@@@@@@");
-                    System.Console.WriteLine("@@@@@@@@");
-                    System.Console.WriteLine("@@@@@@@@");
-                    System.Console.WriteLine("@@@@@@@@");
-
-
-
-
-
-
-
-
-
-
-
-
-                    
+                    if(HttpContext.Session.GetString("TempCart") == null)
+                    {
+                        List<List<int>> cart1 = new List<List<int>>();
+                        cart1.Add(new List<int> {CartEntry.ProductId,CartEntry.Quantity});
+                        var cartStr = JsonConvert.SerializeObject(cart1);
+                        HttpContext.Session.SetString("TempCart",cartStr);
+                        return Redirect("/");
+                    }
+                    else {
+                        var cartStr = HttpContext.Session.GetString("TempCart");
+                        List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                        bool containsItem = false;
+                        foreach(var i in cart1.ToList()){
+                            if(i[0] == CartEntry.ProductId){
+                                i[1] += CartEntry.Quantity;
+                                containsItem = true;
+                            }
+                        }
+                        if(containsItem == false){
+                            cart1.Add(new List<int> {CartEntry.ProductId,CartEntry.Quantity});
+                        }
+                        cartStr = JsonConvert.SerializeObject(cart1);
+                        System.Console.WriteLine(cartStr);
+                        HttpContext.Session.SetString("TempCart",cartStr);
+                        return Redirect("/");
+                    }
                 }
                 if(CurrUser != null)
                 {
@@ -583,10 +898,51 @@ namespace DropShip.Controllers
                 return Redirect("/");
             }
         }
+
+        public IActionResult DeleteFromCart(int ProductIdPassed)
+        {
+            int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
+            User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
+            .FirstOrDefault(user => user.UserId == id);
+            if(HttpContext.Session.GetInt32("logID") == null)
+            {
+                var cartStr = HttpContext.Session.GetString("TempCart");
+                List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                foreach(var i in cart1.ToList()){
+                    if(i[0] == ProductIdPassed){
+                        if(i[1] == 1){
+                            cart1.Remove(i);
+                        }
+                        else{
+                            i[1] -= 1;
+                        }
+                    }
+                }
+                cartStr = JsonConvert.SerializeObject(cart1);
+                HttpContext.Session.SetString("TempCart",cartStr);
+                return Redirect("/myCart");
+            }
+            Cart RetrievedCartItem = dbContext.Carts.FirstOrDefault(cart => cart.UserId == id && cart.ProductId == ProductIdPassed);
+            if(RetrievedCartItem.Quantity == 1)
+            {
+                dbContext.Carts.Remove(RetrievedCartItem);
+            }
+            else
+            {
+                RetrievedCartItem.Quantity -= 1;
+            }
+            dbContext.SaveChanges();
+            return Redirect("/mycart");
+        }
+
         public IActionResult SearchProductsAdmin(Search search1)
         {   
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             if(HttpContext.Session.GetInt32("logID") == null)
             {
@@ -612,6 +968,8 @@ namespace DropShip.Controllers
         {   
             int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
             User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
             .FirstOrDefault(user => user.UserId == id);
             if(HttpContext.Session.GetInt32("logID") == null)
             {
@@ -624,11 +982,14 @@ namespace DropShip.Controllers
             // ViewBag.SearchedOrders = dbContext.Orders.ToList();
             if(search1.sTerm == null || search1.sTerm == "%^&")
             {
-                ViewBag.SearchedOrders = dbContext.Orders;
+                ViewBag.SearchedOrders = dbContext.Orders
+                .Include(o => o.U);
             }
             else{
                 ViewBag.SearchedOrders = dbContext.Orders
-                .Where(o => o.OrderNumber.ToString() == search1.sTerm || o.U.FirstName.Contains(search1.sTerm) || o.U.LastName.Contains(search1.sTerm) || o.CreatedAt.ToString("MM/dd/yyyy") == search1.sTerm).ToList();
+                .Where(o => o.OrderNumber.ToString() == search1.sTerm || o.U.FirstName.Contains(search1.sTerm) || o.U.LastName.Contains(search1.sTerm) || o.CreatedAt.ToString("MM/dd/yyyy") == search1.sTerm)
+                .Include(o => o.U)
+                .ToList();
                 // .Where(o => o.OrderNumber.ToString() == search1.sTerm || o.CustomerName.Contains(search1.sTerm) || o.CreatedAt.ToString("mm/dd/yyyy") == search1.sTerm).ToList();
             }
             ViewBag.SearchTerm = search1.sTerm;
@@ -639,9 +1000,11 @@ namespace DropShip.Controllers
             return View("orderSearch");
         }
 
-        public IActionResult FillOrder(int OrderNum, string sTerm2)
+        public IActionResult FillOrder(string OrderNum, string sTerm2)
         {
-            List<DropShip.Models.Order> OrderListTemp = dbContext.Orders.Where(o => o.OrderNumber == OrderNum).ToList();
+            List<DropShip.Models.Order> OrderListTemp = dbContext.Orders.Where(o => o.OrderNumber == OrderNum)
+            .Include(o => o.U)
+            .ToList();
             foreach(var i in OrderListTemp)
             {
                 i.Filled = true;
@@ -658,9 +1021,11 @@ namespace DropShip.Controllers
                 return SearchOrdersAdmin(search2);
             };
         }
-        public IActionResult UnfillOrder(int OrderNum, string sTerm2)
+        public IActionResult UnfillOrder(string OrderNum, string sTerm2)
         {
-            List<DropShip.Models.Order> OrderListTemp = dbContext.Orders.Where(o => o.OrderNumber == OrderNum).ToList();
+            List<DropShip.Models.Order> OrderListTemp = dbContext.Orders.Where(o => o.OrderNumber == OrderNum)
+            .Include(o => o.U)
+            .ToList();
             foreach(var i in OrderListTemp)
             {
                 i.Filled = false;
@@ -683,6 +1048,141 @@ namespace DropShip.Controllers
         public IActionResult LogOut()
         {
             HttpContext.Session.Clear();
+            return Redirect("/");
+        }
+
+        //add products auto when database is dropped
+        [HttpGet("render15")]
+        public IActionResult render15()
+        {
+            int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
+            User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
+            .FirstOrDefault(user => user.UserId == id);
+            if(CurrUser == null){
+                return Redirect("/");
+            }
+            if(CurrUser.Admin == true)
+            {
+                Product autoProduct1 = new Product();
+                string FullName = CurrUser.FirstName + " " + CurrUser.LastName;
+                autoProduct1.AddedBy = FullName;
+                autoProduct1.ProductName = "flamingo";
+                autoProduct1.ProductPrice = 400;
+                autoProduct1.NumberOfImgs = 7;
+                autoProduct1.ProductDescription = "Huge inflatable flamingo for you and all your friends! Comfortably seats 8 people and has an ice cooler on board. Comes with a 12 volt air pump to inflate on-site!";
+                autoProduct1.ProductKeywords = "flamingo fun huge";
+                dbContext.Products.Add(autoProduct1);
+                dbContext.SaveChanges();
+
+                Product autoProduct2 = new Product();
+                autoProduct2.AddedBy = FullName;
+                autoProduct2.ProductName = "unicorn";
+                autoProduct2.ProductPrice = 450;
+                autoProduct2.NumberOfImgs = 4;
+                autoProduct2.ProductDescription = "Huge inflatable unicorn for you and all your friends! Comfortably seats 8 people and has an ice cooler on board. Comes with a 12 volt air pump to inflate on-site!";
+                autoProduct2.ProductKeywords = "unicorn fun huge";
+                dbContext.Products.Add(autoProduct2);
+                dbContext.SaveChanges();
+                
+                Product autoProduct3 = new Product();
+                autoProduct3.AddedBy = FullName;
+                autoProduct3.ProductName = "swan";
+                autoProduct3.ProductPrice = 450;
+                autoProduct3.NumberOfImgs = 4;
+                autoProduct3.ProductDescription = "Huge inflatable swan for you and all your friends! Comfortably seats 8 people and has an ice cooler on board. Comes with a 12 volt air pump to inflate on-site!";
+                autoProduct3.ProductKeywords = "swan fun huge";
+                dbContext.Products.Add(autoProduct3);
+                dbContext.SaveChanges();
+
+                Product autoProduct4 = new Product();
+                autoProduct4.AddedBy = FullName;
+                autoProduct4.ProductName = "peacock";
+                autoProduct4.ProductPrice = 375;
+                autoProduct4.NumberOfImgs = 5;
+                autoProduct4.ProductDescription = "Huge inflatable peacock for you and all your friends! Comfortably seats 8 people and has an ice cooler on board. Comes with a 12 volt air pump to inflate on-site!";
+                autoProduct4.ProductKeywords = "peacock fun huge";
+                dbContext.Products.Add(autoProduct4);
+                dbContext.SaveChanges();
+
+                User autoUser1 = new User();
+                autoUser1.FirstName = "Temp";
+                autoUser1.LastName = "Temp";
+                autoUser1.Email = "Temp@temp.com";
+                autoUser1.Password = "Temp";
+                autoUser1.Admin = true;
+                dbContext.Users.Add(autoUser1);
+                dbContext.SaveChanges();
+
+                return Redirect("/");
+            }
+            else{
+                return Redirect("/");
+            }
+        }
+        //find user id
+        [HttpGet("myID")]
+        public IActionResult ShowID()
+        {
+            int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
+            User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
+            .FirstOrDefault(user => user.UserId == id);
+            if(CurrUser == null){
+                return Redirect("/");
+            }
+            return Json(id);
+        }
+        //make user admin remotely
+        [HttpGet("remote_admin/{UserToAdminId}")]
+        public IActionResult RemoteAdmin(int UserToAdminId)
+        {
+            if(dbContext.Users.FirstOrDefault(user => user.UserId == UserToAdminId) == null)
+            {
+                return Redirect("/");
+            }
+            int id = HttpContext.Session.GetInt32("logID").GetValueOrDefault();
+            User CurrUser = dbContext.Users
+            .Include(user => user.Carts)
+            .ThenInclude(carts => carts.P)
+            .FirstOrDefault(user => user.UserId == id);
+            if(CurrUser != null){
+                ViewBag.CurrUser = CurrUser;
+                int CartNumber = 0;
+                foreach(var i in CurrUser.Carts)
+                {
+                    CartNumber += i.Quantity;
+                }
+                ViewBag.CartNumber = CartNumber;
+            }
+            else{
+                int CartNumber = 0;
+                if(HttpContext.Session.GetString("TempCart") != null){
+                    var cartStr = HttpContext.Session.GetString("TempCart");
+                    List<List<int>> cart1  = JsonConvert.DeserializeObject<List<List<int>>>(cartStr);
+                    foreach(var j in cart1){
+                        CartNumber += j[1];
+                    }
+                }
+                ViewBag.CartNumber = CartNumber;
+            }
+            ViewBag.UserToAdmin = dbContext.Users.FirstOrDefault(user => user.UserId == UserToAdminId);
+            return View();
+        }
+        public IActionResult MakeAdmin(int UserToAdminId, string SecretPassword)
+        {
+            var base64EncodedBytes = System.Convert.FromBase64String(SecretPassword);
+            string SecretPasswordHashed = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+            if(SecretPasswordHashed == "m�-��")
+            {
+                User SelectedUser = dbContext.Users.FirstOrDefault(user => user.UserId == UserToAdminId);
+                SelectedUser.Admin = true;
+                dbContext.Update(SelectedUser);
+                dbContext.SaveChanges();
+                return Json("User " + SelectedUser.FirstName + " " + SelectedUser.LastName + " has been made an admin!");
+            }
             return Redirect("/");
         }
     }

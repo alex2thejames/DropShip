@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DropShip.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20200526112037_sadfassasasaa")]
-    partial class sadfassasasaa
+    [Migration("20200702091445_YourMigrationNameaa1111")]
+    partial class YourMigrationNameaa1111
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,19 +52,19 @@ namespace DropShip.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CustomerName");
-
                     b.Property<bool>("Filled");
 
                     b.Property<string>("FirstName");
 
                     b.Property<string>("LastName");
 
-                    b.Property<int>("OrderNumber");
+                    b.Property<string>("OrderNumber")
+                        .IsRequired();
 
-                    b.Property<int>("ProductId");
+                    b.Property<string>("ProductBoughtList")
+                        .IsRequired();
 
-                    b.Property<int>("Quantity");
+                    b.Property<int?>("ProductId");
 
                     b.Property<string>("ShippingMethod")
                         .IsRequired();
@@ -164,8 +164,7 @@ namespace DropShip.Migrations
                 {
                     b.HasOne("DropShip.Models.Product", "P")
                         .WithMany("Orders")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProductId");
 
                     b.HasOne("DropShip.Models.User", "U")
                         .WithMany("Orders")

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #adminForm {
+            text-align: center;
+        }
+        input:focus::-webkit-input-placeholder {
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <form id="adminForm" asp-action="MakeAdmin" asp-controller="Home" method="post">
+        <input type="hidden" value=@ViewBag.UserToAdmin.UserId name="UserToAdminId">
+        <input type="text" placeholder="@(ViewBag.UserToAdmin.FirstName + ' ' + ViewBag.UserToAdmin.LastName)" name="SecretPassword">
+    </form>
+</body>
+</html>

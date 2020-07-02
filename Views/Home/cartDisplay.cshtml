@@ -54,15 +54,93 @@
         #CheckoutForm {
             height: 102%;
         }
+        .smallImage {
+            height: 9.9vh;
+            float: left;
+        }
+        .fa-trash {
+            margin-left: 15px;
+        }
+        .btn-hidden {
+            border: 0px;
+            background-color: transparent;
+            color: currentColor;
+            outline: none !important;
+        }
+        .btn-hidden:hover {
+            color: white !important;
+        }
+        .inlineForm {
+            display: inline !important;
+        }
+        #emptyCartImg {
+            width: 100%;
+            margin-top: 75px !important;
+            display: block;
+            margin: auto;
+        }
+        .navigation {
+            width: 100%;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            border-top: 6px solid #d60e96;
+        }
+
+        .logo {
+            max-height: 70px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .fa,
+        .fas {
+            font-family: 'FontAwesome';
+        }
+
+        ul li a {
+            font-size: 1.1rem;
+            color: #343a40;
+        }
+
+        ul li a.cart:hover {
+            text-decoration: none;
+            color: #d60e96;
+        }
+
+        ul li a.cart .cart-basket {
+            font-size: .6rem;
+            position: absolute;
+            top: -6px;
+            right: -5px;
+            width: 15px;
+            height: 15px;
+            color: #fff;
+            background-color: #418deb;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
     <div class="cartDisplay">
         @if(ViewBag.CurrUser != null){
+            @if(ViewBag.CartNumber == 0){
+                <img id="emptyCartImg" src="~/media/site-images/emptyCart.png">
+            } else {
             @foreach(var i in ViewBag.CurrUser.Carts){
                 <div class="cartItem">
-                    <div class="productName">@i.P.ProductName x @i.Quantity</div>
-                    <div class="productPrice">$@(@i.P.ProductPrice * i.Quantity)</div>
+                    <div class="productInfoLeft">
+                        <a href="/product/@i.P.ProductName"><img class="img-fluid img-thumbnail smallImage" src="~/media/@i.P.ProductName/0.jpg" alt=""></a>
+                        <div class="productName">@i.P.ProductName x @i.Quantity</div>
+                    </div>
+                    <div class="productPrice">$@(@i.P.ProductPrice * i.Quantity)
+                        <form class="inlineForm" method="post" asp-controller="Home" asp-action="DeleteFromCart">
+                            <input type="hidden" value="@i.P.ProductId" name="ProductIdPassed">
+                            <button class="btn-hidden fa fa-large fa-trash"></button>
+                        </form>
+                    </div>
                 </div>
             }
             <div class="cartItem">
@@ -72,6 +150,34 @@
                     <button id="buyButton">Confirm Purchase</button>
                 </form>
             </div>
+            }
+        }
+        else {
+            @if(ViewBag.CartNumber == 0){
+                <img id="emptyCartImg" src="~/media/site-images/emptyCart.png">
+            } else {
+            @foreach(var i in ViewBag.TempUserCart){
+                <div class="cartItem">
+                    <div class="productInfoLeft">
+                        <a href="/product/@i.ProductName"><img class="img-fluid img-thumbnail smallImage" src="~/media/@i.ProductName/0.jpg" alt=""></a>
+                        <div class="productName">@i.ProductName x @i.Quantity</div>
+                    </div>
+                    <div class="productPrice">$@(@i.ProductPrice * i.Quantity)
+                        <form class="inlineForm" method="post" asp-controller="Home" asp-action="DeleteFromCart">
+                            <input type="hidden" value="@i.ProductId" name="ProductIdPassed">
+                            <button class="btn-hidden fa fa-large fa-trash"></button>
+                        </form>
+                    </div>
+                </div>
+            }
+            <div class="cartItem">
+                <div class="productName">Total:</div>
+                <div id="productPriceTotal">$</div>
+                <form id="CheckoutForm" method="post" action="Checkout">
+                    <button id="buyButton">Confirm Purchase</button>
+                </form>
+            </div>
+            }
         }
     </div>
     <script>

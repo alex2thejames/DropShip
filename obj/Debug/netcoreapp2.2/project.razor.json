@@ -2981,8 +2981,18 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/Alexander/Documents/DropShip/Views/Home/UnfilledOrderDisplay.cshtml",
-      "TargetPath": "Views\\Home\\UnfilledOrderDisplay.cshtml",
+      "FilePath": "/Users/Alexander/Documents/DropShip/Views/Home/remoteAdmin.cshtml",
+      "TargetPath": "Views\\Home\\remoteAdmin.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/Alexander/Documents/DropShip/Views/Home/orderDisplay.cshtml",
+      "TargetPath": "Views\\Home\\orderDisplay.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/Alexander/Documents/DropShip/Views/Home/unfilledOrderDisplay.cshtml",
+      "TargetPath": "Views\\Home\\unfilledOrderDisplay.cshtml",
       "FileKind": "mvc"
     },
     {

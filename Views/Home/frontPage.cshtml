@@ -15,11 +15,95 @@
             margin: auto;
             border: 0.5px solid rgba(75,149,200,0.5);
         }
+        #imagePicture {
+            margin-top: 3%;
+            margin-right: 5%;
+            margin-left: 5%;
+            width: 50%;
+        }
+        .logo2 {
+            width: 15%;
+        }
+        .banner {
+            margin-right: auto;
+            margin-left: auto;
+            display: inline-block;
+            text-align: center;
+        }
+        .container {
+            max-width: 95%
+        }
+        #divider {
+            height: 1px;
+            width: 90%;
+            margin: auto;
+            margin-top: 40px;
+            background-color: #9E7107;
+        }
+        .gold-font {
+            color: #9E7107 !important;
+        }
+        .mission-wording {
+            color: white;
+            word-spacing: 0px;
+            line-height: 1;
+            margin-top: 5px !important;
+            margin-bottom: 5px !important;
+        }
+        @@media (max-width: 991px){
+            #imagePicture {
+                width: 92%;
+            }
+            .logo2 {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="banner">
+        <img class="logo2" src="~/media/site-images/logo2.png">
+        <img id="imagePicture" src="~/media/site-images/mainBanner.jpg">
+        <img class="logo2" src="~/media/site-images/logo2.png">
+    </div>
+    <div id="divider"></div>
     @* for each product in DB *@
-    @foreach(var i in ViewBag.AllProducts)
+    <!-- Page Content -->
+    <div class="container">
+
+    <h1 class="gold-font font-weight-bold text-center mt-4 mb-0">WELCOME TO INFLATE LLC.</h1>
+    <h3 class="mission-wording font-weight-normal text-center mt-4 mb-0">THE PACIFIC NORTHWESTS PREMIERE INFLATEABLE ISLAND SUPPLIER</h3>
+    <h3 class="mission-wording font-weight-normal text-center mt-4 mb-0">WE AIM TO PROVIDE AN AMAZING, FUN FILLED EXPERIENCE FOR ALL YOUR WINTER AND SUMMER NEEDS.</h3>
+
+    <hr class="mt-2 mb-5">
+
+    <div class="row text-center text-lg-left">
+
+        <div class="col-lg-3 col-md-4 col-6">
+            <a href="/product/flamingo" class="d-block mb-4 h-100">
+                <img class="img-fluid img-thumbnail" src="~/media/flamingo/0.jpg" alt="">
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-6">
+            <a href="/product/unicorn" class="d-block mb-4 h-100">
+                <img class="img-fluid img-thumbnail" src="~/media/unicorn/0.jpg" alt="">
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-6">
+            <a href="/product/swan" class="d-block mb-4 h-100">
+                <img class="img-fluid img-thumbnail" src="~/media/swan/0.jpg" alt="">
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-6">
+            <a href="/product/peacock" class="d-block mb-4 h-100">
+                <img class="img-fluid img-thumbnail" src="~/media/peacock/0.jpg" alt="">
+            </a>
+        </div>
+    </div>
+
+    </div>
+<!-- /.container -->
+    @* @foreach(var i in ViewBag.AllProducts)
     {
             <div class="productPic">
         <a href="/product/@i.ProductName">
@@ -27,7 +111,7 @@
         </a>
             </div>
         <div class="divider"></div>
-    }
+    } *@
     @* end *@
 </body>
 </html>

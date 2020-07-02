@@ -86,3 +86,5 @@
 /Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Home/cartDisplay.cshtml.g.cs
 /Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Home/UnfilledOrderDisplay.cshtml.g.cs
 /Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Home/orderSearch.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Home/orderDisplay.cshtml.g.cs
+/Users/Alexander/Documents/DropShip/obj/Debug/netcoreapp2.2/Razor/Views/Home/remoteAdmin.cshtml.g.cs

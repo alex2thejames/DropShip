@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .whiteBG {
+            background: white;
+        }
+        .main {
+            border-radius: 10px;
+            height: 100vh;
+            margin-bottom: -85px;
+            overflow: auto;
+            text-align: center;
+        }
+        table {
+            margin-top: 4%;
+        }
+        td {
+            vertical-align: middle !important;
+        }
+        .btn-success {
+            height: 3vh !important;
+            line-height: 1vh !important;
+        }
+        .btn-style2 {
+            height: 3vh !important;
+            width: 5vh !important;
+            padding: 0 !important;
+            line-height: 1vh !important;
+        }
+        .btn-secondary {
+            height: 3vh !important;
+            width: 5vh !important;
+            padding: 0 !important;
+            line-height: 1vh !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="whiteBG main container">
+        <table class="table table-striped table-bordered table-sm">
+            <tr>
+                <th colspan="7"><h2>@ViewBag.CurrOrder.U.FirstName @ViewBag.CurrOrder.U.LastName's Order</h2></th>
+            </tr>
+            <tr>
+                <th>Shipping Method</th>
+                <th>Order Number</th>
+                <th colspan="2">Placed On</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td>@ViewBag.CurrOrder.ShippingMethod</td>
+                <td>@ViewBag.CurrOrder.OrderNumber</td>
+                <td colspan="2">@Convert.ToDateTime(ViewBag.CurrOrder.CreatedAt).ToString("MMM dd, yyyy")</td>
+                <td>
+                    @if(ViewBag.CurrOrder.Filled == false){
+                        <form asp-action="FillOrder" asp-controller="Home" method="post">
+                            <button class="btn btn-success">Fill</button>
+                            <input type="hidden" value="@ViewBag.CurrOrder.OrderNumber" name="OrderNum">
+                            <input type="hidden" value="@ViewBag.SearchTerm" name="sTerm2">
+                        </form>
+                        }else{
+                            <form asp-action="UnfillOrder" asp-controller="Home" method="post">
+                                <button class="btn btn-danger btn-style2">Unfill</button>
+                                <input type="hidden" value="@ViewBag.CurrOrder.OrderNumber" name="OrderNum">
+                                <input type="hidden" value="@ViewBag.SearchTerm" name="sTerm2">
+                            </form>
+                        }
+                </td>
+            </tr>
+            <tr>
+                <th colspan="5">Items Ordered</th>
+            </tr>
+            <tr>
+                <td colspan="5">@ViewBag.CurrOrder.ProductBoughtList</td>
+            </tr>
+            <tr>
+                <th colspan="7"><h2>@ViewBag.CurrOrder.U.FirstName @ViewBag.CurrOrder.U.LastName's Information</h2></th>
+            </tr>
+            <tr>
+                <th>Customer Email</th>
+                <th>Street</th>
+                <th>Zip Code</th>
+                <th>City State</th>
+                <th>Account Created On</th>
+            </tr>
+            <tr>
+                <td>@ViewBag.CurrOrder.U.Email</td>
+                <td>@ViewBag.CurrOrder.U.Street</td>
+                <td>@ViewBag.CurrOrder.U.Postal</td>
+                <td>@ViewBag.CurrOrder.U.City, @ViewBag.CurrOrder.U.State</td>
+                <td>@Convert.ToDateTime(ViewBag.CurrOrder.U.CreatedAt).ToString("MMM dd, yyyy")</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

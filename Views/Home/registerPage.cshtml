@@ -183,37 +183,37 @@
                 </div>
 
                 <span asp-validation-for="FirstName"></span>
-                <input type="text" class="form-control inputStyle1" placeholder="First name*" name="FirstName" required="" autofocus="">
+                <input type="text" class="form-control inputStyle1" placeholder="First name*" name="FirstName" required="">
 
                 <span asp-validation-for="LastName"></span>
-                <input type="text" class="form-control inputStyle1" placeholder="Last name*" name="LastName" required="" autofocus="">
+                <input type="text" class="form-control inputStyle1" placeholder="Last name*" name="LastName" required="">
 
                 <span asp-validation-for="Email"></span>
-                <input type="email" class="form-control inputStyle2" placeholder="Email address*" name="email" required autofocus="">
+                <input type="email" class="form-control inputStyle2" placeholder="Email address*" name="email" required>
 
                 <span asp-validation-for="MobilePhone"></span>
-                <input type="tel" class="form-control inputStyle3" placeholder="Mobile Phone" name="MobilePhone" autofocus="">
+                <input type="tel" class="form-control inputStyle3" placeholder="Mobile Phone" name="MobilePhone">
 
                 <span asp-validation-for="Street"></span>
-                <input type="text" class="form-control inputStyle4" placeholder="Street" name="Street" autofocus="">
+                <input type="text" class="form-control inputStyle4" placeholder="Street*" name="Street" required>
 
                 <span asp-validation-for="Postal"></span>
-                <input type="text" class="form-control inputStyle5" placeholder="Zip Code" name="Postal" autofocus="">
+                <input type="text" class="form-control inputStyle5" placeholder="Zip Code*" name="Postal" required>
 
                 <span asp-validation-for="City"></span>
-                <input type="text" class="form-control inputStyle5" placeholder="City" name="City" autofocus="">
+                <input type="text" class="form-control inputStyle5" placeholder="City*" name="City" required>
 
                 <span asp-validation-for="State"></span>
-                <input type="text" class="form-control inputStyle5" placeholder="State" name="State" minlength="2" maxlength="2" autofocus="">
+                <input type="text" class="form-control inputStyle5" placeholder="State*" name="State" minlength="2" maxlength="2" required>
 
                 <span asp-validation-for="Password"></span>
-                <input type="password" class="form-control inputStyle1" placeholder="Password*" name="Password" required autofocus="">
+                <input type="password" class="form-control inputStyle1" placeholder="Password*" name="Password" required>
 
                 <span asp-validation-for="Confirm"></span>
-                <input type="password" class="form-control inputStyle1" placeholder="Repeat Password*" name="Confirm" required autofocus="">
+                <input type="password" class="form-control inputStyle1" placeholder="Repeat Password*" name="Confirm" required>
 
-                <button type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
-                <a href="/" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
+                <button type="submit"> Sign Up <i class="fa fa-user-plus"></i></button>
+                <a href="/" id="cancel_signup"><i class="fa fa-angle-left"></i> Back</a>
             </form>
     </div>
 </body>

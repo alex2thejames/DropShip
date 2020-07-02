@@ -11,14 +11,17 @@ namespace DropShip.Models
         public int OrderId { get; set; }
         public int UserId { get; set; }
 
-        [Required]
-        public int ProductId { get; set; }
+        // [Required]
+        // public int ProductId { get; set; }
 
         [Required]
-        public int OrderNumber {get;set;}
+        public string OrderNumber {get;set;}
+
+        // [Required]
+        // public int Quantity {get;set;}
 
         [Required]
-        public int Quantity {get;set;}
+        public string ProductBoughtList {get;set;}
         
         //if no account created
         public string FirstName {get;set;}

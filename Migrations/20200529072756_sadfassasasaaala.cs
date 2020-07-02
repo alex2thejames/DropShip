@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DropShip.Migrations
 {
-    public partial class sadfassasa : Migration
+    public partial class sadfassasasaaala : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -88,16 +88,16 @@ namespace DropShip.Migrations
                     OrderId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<int>(nullable: false),
-                    ProductId = table.Column<int>(nullable: false),
                     OrderNumber = table.Column<int>(nullable: false),
-                    Quantity = table.Column<int>(nullable: false),
+                    ProductBoughtList = table.Column<string>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
                     Filled = table.Column<bool>(nullable: false),
                     ShippingMethod = table.Column<string>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: false)
+                    UpdatedAt = table.Column<DateTime>(nullable: false),
+                    ProductId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -107,7 +107,7 @@ namespace DropShip.Migrations
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Orders_Users_UserId",
                         column: x => x.UserId,
