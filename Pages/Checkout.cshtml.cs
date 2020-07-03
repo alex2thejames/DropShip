@@ -116,8 +116,11 @@ namespace csharp_checkout.Pages
                 CreateCheckoutRequest createCheckoutRequest = new CreateCheckoutRequest.Builder(
                     Guid.NewGuid().ToString(),
                     orderRequest)
+                .AskForShippingAddress(true)
+                // .RedirectUrl("www.google.com")
+                .PrePopulateBuyerEmail(CurrUser.Email)
+                .MerchantSupportEmail("inflateLLC@google.com")
                 .Build();
-
                 // create checkout response, and redirect to checkout page if successful
                 CreateCheckoutResponse response = checkoutApi.CreateCheckout(locationId, createCheckoutRequest);
                 return Redirect(response.Checkout.CheckoutPageUrl);
@@ -176,8 +179,9 @@ namespace csharp_checkout.Pages
                     CreateCheckoutRequest createCheckoutRequest = new CreateCheckoutRequest.Builder(
                         Guid.NewGuid().ToString(),
                         orderRequest)
+                    .AskForShippingAddress(true)
+                    .MerchantSupportEmail("inflateLLC@google.com")
                     .Build();
-                    createCheckoutRequest.AskForShippingAddress = true;
                     // create checkout response, and redirect to checkout page if successful
                     CreateCheckoutResponse response = checkoutApi.CreateCheckout(locationId, createCheckoutRequest);
                     return Redirect(response.Checkout.CheckoutPageUrl);
