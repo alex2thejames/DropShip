@@ -8,18 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>  
         #logreg-forms{
-        @* margin: 0 !important; *@
-        position: absolute !important;
-        top: 40% !important;
-        left: 50% !important;
-        -ms-transform: translate(-50%, -50%) !important;
-        transform: translate(-50%, -50%) !important;
-        width:60%;
-        margin:10px;
-        background: hsla(0, 0%, 100%, 0.9);
-        border: 1px solid rgba(57, 59, 61, .2);
-        border-radius: 8px;
-        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+            width:60%;
+            margin: auto !important;
+            margin-top: 2% !important;
+            background: hsla(0, 0%, 100%, 0.9);
+            border: 1px solid rgba(57, 59, 61, .2);
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
         }
         #logreg-forms form {
             width: 100%;
@@ -35,7 +30,7 @@
             background: hsla(0, 0%, 100%, 0.9);
             color: #606162;
             padding: 6px 5px;
-            margin: 15px 5px 10px 5px;
+            margin: 15px 0 10px 0.5vw;
             border: 1px solid rgba(57, 59, 61, .2);
             border-radius: 8px;
             text-indent: 5px;
@@ -60,7 +55,10 @@
             width: 98.5%;
         }
         .inputStyle5 {
-            width: 31.25%;
+            width: 32%;
+        }
+        .inputStyle6 {
+            width: 48%;
         }
         #logreg-forms .form-signin input[type="email"] {
             margin-bottom: -1px;
@@ -73,10 +71,9 @@
         }
 
         #logreg-forms .social-login{
-            @* width:30px; *@
-            @* margin:0 auto; *@
+            margin: auto;
             margin-bottom: 14px;
-            margin-left: 25%;
+            width: fit-content;
         }
         #logreg-forms .social-btn{
             width:190px;
@@ -96,8 +93,6 @@
             width:200px;
             border:1px solid red;
         }
-
-
         #logreg-forms button[type="submit"]{ 
             height: 37px;
             width: 98.5%;
@@ -136,14 +131,16 @@
         span {
             color: red;
         }
+        .no-margin {
+            margin: 0px !important;
+        }
 
         /* Mobile */
 
-        @@media screen and (max-width:500px){
+        @@media screen and (max-width:1063px){
             #logreg-forms{
-                width:300px;
+                width:90%;
             }
-            
             #logreg-forms  .social-login{
                 width:200px;
                 margin:0 auto;
@@ -156,7 +153,6 @@
                 color:white;
                 width:200px;
                 height: 56px;
-                
             }
             #logreg-forms .social-btn:nth-child(1){
                 margin-bottom: 5px;
@@ -164,12 +160,18 @@
             #logreg-forms .social-btn span{
                 display: none;
             }
-            #logreg-forms  .facebook-btn:after{
-                content:'Facebook';
+            .inputStyle1 {
+                width: 99% !important;
             }
-        
-            #logreg-forms  .google-btn:after{
-                content:'Google+';
+            .inputStyle2 {
+                width: 55%;
+            }
+            .inputStyle3 {
+                width: 42%;
+                margin-right: 0px !important;
+            }
+            .inputStyle6 {
+                width: 49%;
             }
         }
     </style>
@@ -177,10 +179,10 @@
 <body>
     <div id="logreg-forms">
             <form asp-action="RegisterProcess" asp-controller="Home" method="post">
-                <div class="social-login">
-                    <button class="btn facebook-btn social-btn" type="button"><span1><i class="fab fa-facebook-f"></i> Sign up with Facebook</span1> </button>
-                    <button class="btn google-btn social-btn" type="button"><span1><i class="fab fa-google-plus-g"></i> Sign up with Google+</span1> </button>
-                </div>
+                @* <div class="social-login">
+                    <button class="btn facebook-btn social-btn" type="button"><span1><i class="fa fa-facebook-f" aria-hidden="true"></i> Sign up with Facebook</span1> </button>
+                    <button class="btn google-btn social-btn" type="button"><span1><i class="fa fa-google-plus" aria-hidden="true"></i> Sign up with Google+</span1> </button>
+                </div> *@
 
                 <span asp-validation-for="FirstName"></span>
                 <input type="text" class="form-control inputStyle1" placeholder="First name*" name="FirstName" required="">
@@ -204,13 +206,13 @@
                 <input type="text" class="form-control inputStyle5" placeholder="City*" name="City" required>
 
                 <span asp-validation-for="State"></span>
-                <input type="text" class="form-control inputStyle5" placeholder="State*" name="State" minlength="2" maxlength="2" required>
+                <input type="text" class="form-control inputStyle5 no-margin" placeholder="State*" name="State" minlength="2" maxlength="2" required>
 
                 <span asp-validation-for="Password"></span>
-                <input type="password" class="form-control inputStyle1" placeholder="Password*" name="Password" required>
+                <input type="password" class="form-control inputStyle6" placeholder="Password*" name="Password" required>
 
                 <span asp-validation-for="Confirm"></span>
-                <input type="password" class="form-control inputStyle1" placeholder="Repeat Password*" name="Confirm" required>
+                <input type="password" class="form-control inputStyle6 no-margin" placeholder="Repeat Password*" name="Confirm" required>
 
                 <button type="submit"> Sign Up <i class="fa fa-user-plus"></i></button>
                 <a href="/" id="cancel_signup"><i class="fa fa-angle-left"></i> Back</a>
